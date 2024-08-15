@@ -1,0 +1,14 @@
+{
+  "name": "pokemon-battle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:backend": "npm --prefix backend start",
+    "start:frontend": "npm --prefix frontend start",
+    "build:backend": "npm --prefix backend run build",
+    "build:frontend": "npm --prefix frontend run build",
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "migration:run": "npm --prefix backend run migration:run"
+  }
+}
