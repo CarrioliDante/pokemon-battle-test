@@ -13,7 +13,8 @@ frontend/build/
 
 
 # Logs
-logs
+frontend/logs
+backend/logs
 *.log
 npm-debug.log*
 pnpm-debug.log*
@@ -46,6 +47,7 @@ lerna-debug.log*
 
 # dotenv environment variable files
 .env
+frontend/.env
 .env.development.local
 .env.test.local
 .env.production.local
