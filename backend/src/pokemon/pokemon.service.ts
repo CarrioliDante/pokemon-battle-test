@@ -100,4 +100,13 @@ export class PokemonService {
     const savedResult = await this.battleResultRepository.save(battleResult);
     return savedResult;
   }
+
+  async getRecentBattles(): Promise<BattleResult[]> {
+    const recentBattles = await this.battleResultRepository.find({
+      order: { id: 'DESC' },
+      take: 5,
+    });
+    console.log('Recent battles:', recentBattles);
+    return recentBattles;
+  }
 }

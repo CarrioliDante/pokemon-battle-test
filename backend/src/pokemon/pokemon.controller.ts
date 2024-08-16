@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body } from '@nestjs/common';
 import { PokemonService } from './pokemon.service';
 import { Pokemon } from './entities/pokemon.entity';
 import { BattleDto } from './dto/battle.dto';
+import { BattleResult } from './entities/battle-result.entity';
 
 @Controller('pokemon')
 export class PokemonController {
@@ -34,5 +35,9 @@ export class PokemonController {
     }
 
     return await this.pokemonService.battle(updatedBattleDto);
+  }
+  @Get('battle/history')
+  async getBattleHistory(): Promise<BattleResult[]> {
+    return this.pokemonService.getRecentBattles();
   }
 }

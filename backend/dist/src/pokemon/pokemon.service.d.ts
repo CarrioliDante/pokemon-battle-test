@@ -8,4 +8,5 @@ export declare class PokemonService {
     constructor(pokemonRepository: Repository<Pokemon>, battleResultRepository: Repository<BattleResult>);
     findAll(): Promise<Pokemon[]>;
     battle(battleDto: BattleDto): Promise<BattleResult>;
+    getRecentBattles(): Promise<BattleResult[]>;
 }

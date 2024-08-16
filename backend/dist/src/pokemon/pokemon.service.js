@@ -44,10 +44,12 @@ let PokemonService = class PokemonService {
         let battleLog = [];
         let winner;
         let loser;
+        const originalHp1 = pokemon1.hp;
+        const originalHp2 = pokemon2.hp;
         while (pokemon1.hp > 0 && pokemon2.hp > 0) {
             const damage1 = Math.max(1, firstAttacker.attack - secondAttacker.defense);
             secondAttacker.hp -= damage1;
-            battleLog.push(`${firstAttacker.name} hits ${secondAttacker.name} for ${damage1} damage!`);
+            battleLog.push(`${firstAttacker.name} hits ${secondAttacker.name} for ${damage1} damage! HP left for ${secondAttacker.name}: ${secondAttacker.hp}`);
             if (secondAttacker.hp <= 0) {
                 winner = firstAttacker;
                 loser = secondAttacker;
@@ -55,7 +57,7 @@ let PokemonService = class PokemonService {
             }
             const damage2 = Math.max(1, secondAttacker.attack - firstAttacker.defense);
             firstAttacker.hp -= damage2;
-            battleLog.push(`${secondAttacker.name} hits ${firstAttacker.name} for ${damage2} damage!`);
+            battleLog.push(`${secondAttacker.name} hits ${firstAttacker.name} for ${damage2} damage! HP left for ${firstAttacker.name}: ${firstAttacker.hp}`);
             if (firstAttacker.hp <= 0) {
                 winner = secondAttacker;
                 loser = firstAttacker;
@@ -74,6 +76,14 @@ let PokemonService = class PokemonService {
         });
         const savedResult = await this.battleResultRepository.save(battleResult);
         return savedResult;
+    }
+    async getRecentBattles() {
+        const recentBattles = await this.battleResultRepository.find({
+            order: { id: 'DESC' },
+            take: 5,
+        });
+        console.log('Recent battles:', recentBattles);
+        return recentBattles;
     }
 };
 exports.PokemonService = PokemonService;

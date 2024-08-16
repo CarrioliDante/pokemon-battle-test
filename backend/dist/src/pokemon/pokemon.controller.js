@@ -39,6 +39,9 @@ let PokemonController = class PokemonController {
         }
         return await this.pokemonService.battle(updatedBattleDto);
     }
+    async getBattleHistory() {
+        return this.pokemonService.getRecentBattles();
+    }
 };
 exports.PokemonController = PokemonController;
 __decorate([
@@ -54,6 +57,12 @@ __decorate([
     __metadata("design:paramtypes", [battle_dto_1.BattleDto]),
     __metadata("design:returntype", Promise)
 ], PokemonController.prototype, "battle", null);
+__decorate([
+    (0, common_1.Get)('battle/history'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], PokemonController.prototype, "getBattleHistory", null);
 exports.PokemonController = PokemonController = __decorate([
     (0, common_1.Controller)('pokemon'),
     __metadata("design:paramtypes", [pokemon_service_1.PokemonService])
