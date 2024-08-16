@@ -46,6 +46,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Pokemon.prototype, "imageUrl", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Pokemon.prototype, "cryUrl", void 0);
 exports.Pokemon = Pokemon = __decorate([
     (0, typeorm_1.Entity)()
 ], Pokemon);

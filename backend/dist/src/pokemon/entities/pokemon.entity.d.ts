@@ -7,4 +7,5 @@ export declare class Pokemon {
     speed: number;
     type: string;
     imageUrl: string;
+    cryUrl: string;
 }

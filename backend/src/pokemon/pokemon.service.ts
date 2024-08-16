@@ -34,6 +34,7 @@ export class PokemonService {
     let firstAttacker = pokemon1;
     let secondAttacker = pokemon2;
 
+    // Determinar el primer atacante basado en velocidad y ataque
     if (
       pokemon2.speed > pokemon1.speed ||
       (pokemon2.speed === pokemon1.speed && pokemon2.attack > pokemon1.attack)
@@ -42,35 +43,43 @@ export class PokemonService {
       secondAttacker = pokemon1;
     }
 
-    let battleLog = [];
+    let battleLog: string[] = [];
     let winner: Pokemon;
     let loser: Pokemon;
 
+    // Inicializar HP originales para los Pokémon
+    const originalHp1 = pokemon1.hp;
+    const originalHp2 = pokemon2.hp;
+
     while (pokemon1.hp > 0 && pokemon2.hp > 0) {
+      // Ataque del primer atacante
       const damage1 = Math.max(
         1,
         firstAttacker.attack - secondAttacker.defense,
       );
       secondAttacker.hp -= damage1;
       battleLog.push(
-        `${firstAttacker.name} hits ${secondAttacker.name} for ${damage1} damage!`,
+        `${firstAttacker.name} hits ${secondAttacker.name} for ${damage1} damage! HP left for ${secondAttacker.name}: ${secondAttacker.hp}`,
       );
 
+      // Verificar si el segundo atacante ha sido derrotado
       if (secondAttacker.hp <= 0) {
         winner = firstAttacker;
         loser = secondAttacker;
         break;
       }
 
+      // Ataque del segundo atacante
       const damage2 = Math.max(
         1,
         secondAttacker.attack - firstAttacker.defense,
       );
       firstAttacker.hp -= damage2;
       battleLog.push(
-        `${secondAttacker.name} hits ${firstAttacker.name} for ${damage2} damage!`,
+        `${secondAttacker.name} hits ${firstAttacker.name} for ${damage2} damage! HP left for ${firstAttacker.name}: ${firstAttacker.hp}`,
       );
 
+      // Verificar si el primer atacante ha sido derrotado
       if (firstAttacker.hp <= 0) {
         winner = secondAttacker;
         loser = firstAttacker;
@@ -82,13 +91,12 @@ export class PokemonService {
       pokemon1,
       pokemon2,
       winner,
-      loserName: loser.name, // Asignar el nombre del perdedor
+      loserName: loser.name,
       pokemon1Name: pokemon1.name,
       pokemon2Name: pokemon2.name,
       winnerName: winner.name,
       log: JSON.stringify(battleLog),
     });
-
     const savedResult = await this.battleResultRepository.save(battleResult);
     return savedResult;
   }

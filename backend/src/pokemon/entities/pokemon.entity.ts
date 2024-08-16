@@ -25,4 +25,7 @@ export class Pokemon {
 
   @Column()
   imageUrl: string;
+
+  @Column()
+  cryUrl: string; // Nuevo campo para la URL del grito
 }
