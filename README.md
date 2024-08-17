@@ -30,6 +30,10 @@ El proyecto está dividido en dos partes: el backend, que maneja la lógica de l
 - CLI de Typeorm: npm i -g typeorm
 
 ## Instrucciones de Instalación
+- Instalar CLI de NestJs: npm install -g @nestjs/cli
+- Instalar CLI Typeorm:  npm i -g typeorm
+- Instalar dependencias: npm install
+- 
 ### Instalar las dependencias de cada carpeta
 ### Backend:
  - cd backend
@@ -39,9 +43,7 @@ El proyecto está dividido en dos partes: el backend, que maneja la lógica de l
  - cd frontend
  - npm install
    
-- Instalar CLI de NestJs: npm install -g @nestjs/cli
-- Instalar CLI Typeorm:  npm i -g typeorm
-- Instalar dependencias: npm install
+
   
 ## Comandos disponibles:
 
