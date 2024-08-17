@@ -42,8 +42,8 @@ El proyecto está dividido en dos partes: el backend, que maneja la lógica de l
 ### Frontend:
  - cd frontend
  - npm install
-   
-
+ - Creacion de .env:
+REACT_APP_API_BASE_URL=http://localhost:4000
   
 ## Comandos disponibles:
 
