@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreatePokemonTable1687349572381 = void 0;
+const fs = require("fs");
+const path = require("path");
 class CreatePokemonTable1687349572381 {
     async up(queryRunner) {
         await queryRunner.query(`
@@ -15,14 +17,19 @@ class CreatePokemonTable1687349572381 {
         "imageUrl" varchar NOT NULL
       );
     `);
-        await queryRunner.query(`
-      INSERT INTO "pokemon" ("name", "attack", "defense", "hp", "speed", "type", "imageUrl") VALUES
-      ('Pikachu', 4, 3, 3, 6, 'Electric', 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png'),
-      ('Charmander', 4, 3, 3, 4, 'Fire', 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/004.png'),
-      ('Squirtle', 3, 4, 3, 3, 'Water', 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/007.png'),
-      ('Bulbasaur', 4, 3, 3, 3, 'Grass', 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/001.png'),
-      ('Eevee', 4, 3, 4, 5, 'Normal', 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/133.png');
-    `);
+        const filePath = path.join(process.cwd(), 'db', 'data', 'pokemon.json');
+        const pokemonData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+        for (const pokemon of pokemonData.pokemon) {
+            await queryRunner.query(`INSERT INTO "pokemon" ("name", "attack", "defense", "hp", "speed", "type", "imageUrl") VALUES (?, ?, ?, ?, ?, ?, ?)`, [
+                pokemon.name,
+                pokemon.attack,
+                pokemon.defense,
+                pokemon.hp,
+                pokemon.speed,
+                pokemon.type,
+                pokemon.imageUrl,
+            ]);
+        }
     }
     async down(queryRunner) {
         await queryRunner.query(`DROP TABLE "pokemon"`);

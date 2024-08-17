@@ -25,7 +25,7 @@ export class PokeCry1723818350166 implements MigrationInterface {
       `UPDATE "pokemon" SET "cryUrl" = 'https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/7.ogg' WHERE "name" = 'Squirtle'`,
     );
     await queryRunner.query(
-      `UPDATE "pokemon" SET "cryUrl" = 'https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/1.ogg' WHERE "name" = 'Bulbasaur'`,
+      `UPDATE "pokemon" SET "cryUrl" = 'https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/1.ogg' WHERE "name" = 'Bulbasur'`,
     );
     await queryRunner.query(
       `UPDATE "pokemon" SET "cryUrl" = 'https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/133.ogg' WHERE "name" = 'Eevee'`,
