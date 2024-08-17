@@ -34,7 +34,7 @@ const PokeBattle = ({ selectedPokemon, pokemons }) => {
         setBattleResult(response.data);
         setShowWinner(true); // Mostrar la vista del ganador
 
-        // Fetch and update history after the battle
+        
         fetchHistory();
 
       } catch (error) {
@@ -70,36 +70,36 @@ const PokeBattle = ({ selectedPokemon, pokemons }) => {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 2 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 2, marginTop: 6 }}>
       {/* Mostrar la vista del ganador si se ha decidido */}
       {showWinner && battleResult && (
-        <Box
-          sx={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-            zIndex: 1000,
-          }}
-          onClick={handleCloseWinner}
-        >
-          <Typography variant="h4">
-            {battleResult.winnerName} es el ganador!
-          </Typography>
-          <PokeCard pokemon={battleResult.winner} />
-        </Box>
-      )}
+  <Box
+    sx={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.8)',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: 'white',
+      zIndex: 1000,
+    }}
+    onClick={handleCloseWinner}
+  >
+    <Typography variant="h4" sx={{ marginBottom: 2 }}>
+      {battleResult.winnerName} es el ganador!
+    </Typography>
+    <PokeCard pokemon={battleResult.winner} onClick={null} />
+  </Box>
+)}
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', maxWidth: '800px', marginBottom: 4 }}>
         <Box sx={{ display: 'flex', justifyContent: 'center', width: '40%' }}>
-          <PokeCard pokemon={selectedPokemon} />
+          <PokeCard pokemon={selectedPokemon}  />
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '20%' }}>
           <Button

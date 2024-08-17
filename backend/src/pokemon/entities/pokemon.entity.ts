@@ -27,5 +27,5 @@ export class Pokemon {
   imageUrl: string;
 
   @Column()
-  cryUrl: string; // Nuevo campo para la URL del grito
+  cryUrl: string;
 }

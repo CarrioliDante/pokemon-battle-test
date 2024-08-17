@@ -34,7 +34,7 @@ export class PokemonService {
     let firstAttacker = pokemon1;
     let secondAttacker = pokemon2;
 
-    // Determinar el primer atacante basado en velocidad y ataque
+    // logica de batalla
     if (
       pokemon2.speed > pokemon1.speed ||
       (pokemon2.speed === pokemon1.speed && pokemon2.attack > pokemon1.attack)
@@ -47,12 +47,12 @@ export class PokemonService {
     let winner: Pokemon;
     let loser: Pokemon;
 
-    // Inicializar HP originales para los Pokémon
+    // Hp
     const originalHp1 = pokemon1.hp;
     const originalHp2 = pokemon2.hp;
 
     while (pokemon1.hp > 0 && pokemon2.hp > 0) {
-      // Ataque del primer atacante
+      // primer ataque
       const damage1 = Math.max(
         1,
         firstAttacker.attack - secondAttacker.defense,
@@ -62,14 +62,14 @@ export class PokemonService {
         `${firstAttacker.name} hits ${secondAttacker.name} for ${damage1} damage! HP left for ${secondAttacker.name}: ${secondAttacker.hp}`,
       );
 
-      // Verificar si el segundo atacante ha sido derrotado
+      // verificar atacante
       if (secondAttacker.hp <= 0) {
         winner = firstAttacker;
         loser = secondAttacker;
         break;
       }
 
-      // Ataque del segundo atacante
+      // Ataque 2do
       const damage2 = Math.max(
         1,
         secondAttacker.attack - firstAttacker.defense,
@@ -79,7 +79,6 @@ export class PokemonService {
         `${secondAttacker.name} hits ${firstAttacker.name} for ${damage2} damage! HP left for ${firstAttacker.name}: ${firstAttacker.hp}`,
       );
 
-      // Verificar si el primer atacante ha sido derrotado
       if (firstAttacker.hp <= 0) {
         winner = secondAttacker;
         loser = firstAttacker;
@@ -106,7 +105,7 @@ export class PokemonService {
       order: { id: 'DESC' },
       take: 5,
     });
-    console.log('Recent battles:', recentBattles);
+    // console.log('Recent battles:', recentBattles);
     return recentBattles;
   }
 }

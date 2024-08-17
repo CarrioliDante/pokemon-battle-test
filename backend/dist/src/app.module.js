@@ -18,10 +18,7 @@ let AppModule = class AppModule {
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            typeorm_1.TypeOrmModule.forRoot(data_source_1.dataSourceOptions),
-            pokemon_module_1.PokemonModule,
-        ],
+        imports: [typeorm_1.TypeOrmModule.forRoot(data_source_1.dataSourceOptions), pokemon_module_1.PokemonModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

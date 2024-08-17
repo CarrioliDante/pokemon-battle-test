@@ -8,12 +8,18 @@ const PokeCard = ({ pokemon, onClick }) => {
 
   React.useEffect(() => {
     if (pokemon && pokemon.cryUrl) {
-      setAudio(new Audio(pokemon.cryUrl));
+      const audioElement = new Audio(pokemon.cryUrl);
+
+      audioElement.onerror = () => {
+        console.error(`Error loading audio for ${pokemon.name} from URL: ${pokemon.cryUrl}`);
+      };
+
+      setAudio(audioElement);
     }
   }, [pokemon]);
 
   const handleClick = () => {
-    if (pokemon) {
+    if (pokemon && onClick) {
       onClick(pokemon);
       if (audio) {
         audio.play().catch((error) => {
@@ -49,7 +55,7 @@ const PokeCard = ({ pokemon, onClick }) => {
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      style={{ cursor: 'pointer' }}
+      style={{ cursor: onClick ? 'pointer' : 'default' }} 
     >
       <CardMedia
         component="img"

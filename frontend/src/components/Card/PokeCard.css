@@ -1,7 +1,7 @@
 /* PokemonCard.css */
 
 .pokemon-card {
-    width: 200px; /* Ajustar el ancho de las cards */
+    width: 200px; 
     transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
     cursor: pointer;
     position: relative;
@@ -53,6 +53,6 @@
   }
   
   .pokemon-card .MuiLinearProgress-bar {
-    background-color: #3f51b5; /* Cambia este color para las barras de progreso */
+    background-color: #3f51b5; 
   }
   

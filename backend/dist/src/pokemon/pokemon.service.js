@@ -82,7 +82,6 @@ let PokemonService = class PokemonService {
             order: { id: 'DESC' },
             take: 5,
         });
-        console.log('Recent battles:', recentBattles);
         return recentBattles;
     }
 };

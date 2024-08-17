@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Fade } from '@mui/material';
-import './PokeLoader.css'; // Si es necesario, puedes ajustar los estilos aquí
+import './PokeLoader.css'; 
 
 const PokeBallLoading = ({ onLoadingComplete }) => {
   const [loading, setLoading] = useState(true);
@@ -8,8 +8,8 @@ const PokeBallLoading = ({ onLoadingComplete }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-      setTimeout(onLoadingComplete, 1000); // Espera a que el fade termine antes de marcar la carga como completa
-    }, 3000); // Duración de la pantalla de carga
+      setTimeout(onLoadingComplete, 1000); 
+    }, 900); 
 
     return () => clearTimeout(timer);
   }, [onLoadingComplete]);

@@ -15,7 +15,6 @@ export class PokeCry1723818350166 implements MigrationInterface {
       `ALTER TABLE "temporary_pokemon" RENAME TO "pokemon"`,
     );
 
-    // Actualiza los registros con los gritos específicos para cada Pokémon
     await queryRunner.query(
       `UPDATE "pokemon" SET "cryUrl" = 'https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/25.ogg' WHERE "name" = 'Pikachu'`,
     );

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography } from '@mui/material';
+import { Container, Typography, Box } from '@mui/material';
 import PokeLoader from './components/PokeLoader/PokeLoader';
 import PokeList from './components/PokemonList/PokeList';
 import PokeBattle from './components/PokeBattle/PokeBattle';
 import axios from 'axios';
+import './App.css';
+
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const App = () => {
@@ -33,9 +35,28 @@ const App = () => {
       {!loadingComplete && <PokeLoader onLoadingComplete={handleLoadingComplete} />}
       {loadingComplete && (
         <Container>
-          <Typography variant="h2" align="center" gutterBottom>
-            Welcome to Pokémon Battle App
-          </Typography>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            marginTop={4}
+            marginBottom={4}
+          >
+            <img
+              src="/images/logo.png"
+              alt="Pokemon Logo"
+              style={{ width: '300px', marginBottom: '10px' }}
+            />
+            <Typography
+              variant="h2"
+              align="center"
+              gutterBottom
+              fontWeight="bold"
+              fontFamily="Roboto,  sans-serif">
+              Battle App
+            </Typography>
+          </Box>
           <PokeList pokemons={pokemons} setSelectedPokemon={setSelectedPokemon} />
           <PokeBattle selectedPokemon={selectedPokemon} pokemons={pokemons} setSelectedPokemon={setSelectedPokemon} />
         </Container>
